@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            background-image: url("../static/homebg.jpg");
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .ends{
+            background-color: rgb(71, 73, 192);
+            opacity: 0.5;
+            color: white;
+        }
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 25px;
+        }
+        .opaq{
+            opacity:0.4;
+        }
+        .serv_img{
+            width: 80%;
+        }
+        
+    </style>
+
+</head>
+<body  >
+    <div >
+        <div class="header container-fluid m-0 mb-3 p-0 ">
+            <nav class="navbar navbar-expand-lg m-0 text-white ends">
+                <div class="container-fluid m-0">
+
+                <div class="logo">
+                    <img class="myimg" src="..\static\logo.jpeg" alt=" something went wrong">
+                </div>
+                <a class="navbar-brand text-white" href="#">HealthBuddy</a>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav m-auto  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/developer">Developer</a>
+                    </li>
+                    
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-primary m-2"><a style="color: white;" href="login.html">Login</a></button>
+                        <button class="btn btn-primary m-2">Get Started</button>
+                    </div>
+                </div>
+                </div>
+            </nav>
+                
+        </div>
+
+        <!-- body ============================================================== -->
+        <div class=" mt-3 m-auto text-dark p-3 bg-light container">
+
+
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates magnam, tempore nihil ipsam explicabo labore repudiandae et unde maxime impedit fugiat odio tenetur est qui accusamus cumque dolorem quae incidunt non rerum eveniet neque reiciendis. Veritatis maxime distinctio ab dolore numquam doloribus, eaque voluptate temporibus amet ex recusandae. Dolorem beatae reiciendis nobis modi libero praesentium assumenda rerum aut totam obcaecati odit voluptatem et natus maxime, cum ad mollitia deserunt qui eum adipisci sit? Doloremque assumenda voluptates, amet delectus, velit labore eveniet ad eligendi, laboriosam voluptatibus quo nulla alias harum commodi omnis. Officia explicabo repudiandae eligendi quisquam porro dignissimos alias deleniti.</p>
+
+            <h2>Services</h2>
+            <div class="row">
+                <div class="col-4 p-3 ">
+                    <a href="/recomend" target="_blank">
+                        <div class="m-1 bg-white card">
+                            <div class="p-4">
+                                <div class="w-100 text-center">
+                                    <img src="..\static\BMIimage.jpg" class="serv_img m-auto "/>
+                                </div>
+                            </div>
+                            <div class="text-center bg-info p-3">
+                                <h4 class="text-secondary">Medical Recomendation</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 p-3 service ">
+                    <div class="m-1 bg-white card">
+                        <div class="p-4 ">
+                            <div class="w-100 text-center">
+                                <img src="..\static\BMIimage.jpg" class="serv_img m-auto "/>
+                            </div>
+
+                        </div>
+                        <div class="text-center bg-info p-3">
+                            <h4 class="text-secondary"><a href="rp.html">Report Analyser</a></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4 p-3 service ">
+                    <div class="m-1 bg-white card">
+                        <div class="p-4 ">
+                            <div class="w-100 text-center">
+                                <img src="..\static\BMIimage.jpg" class="serv_img m-auto "/>
+                            </div>
+
+                        </div>
+                        <div class="text-center bg-info p-3">
+                            <h4 class="text-secondary"><a href="bmi.html">BMI CALCULATOR</a></h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ends text-center text-white p-5 mt-3">
+            <div class="logo">
+                <img class="myimg" src="..\static\logo.jpeg" alt=" something went wrong">
+            </div>
+            <a class="navbar-brand text-white" href="#">HealthBuddy</a>
+            <br>
+            <p>Presented to you by Esperion</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

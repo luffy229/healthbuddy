@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>predict</title>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            background-image: url("../static/homebg.jpg");
+            height: 100vh;
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .ends{
+            background-color: rgb(71, 73, 192);
+            opacity: 0.5;
+            color: white;
+        }
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 25px;
+        }
+    </style>
+
+</head>
+<body >
+    <div>
+        <div class="header container-fluid m-0 p-0">
+            <nav class="navbar navbar-expand-lg text-white ends">
+                <div class="container-fluid">
+                
+                <div class="logo">
+                    <img class="myimg" src="..\static\logo.jpeg" alt=" something went wrong">
+                </div>
+                <a class="navbar-brand text-white" href="#">HealthBuddy</a>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav m-auto  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white " aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/developer">Developer</a>
+                    </li>
+                    
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-primary m-2">Login</button>
+                        <button class="btn btn-primary m-2">Get Started</button>
+                    </div>
+                </div>
+                </div>
+            </nav>
+                
+        </div>
+
+        <!-- body ============================================================== -->
+        <div class="m-5 p-3">
+            <div>
+                <h1 class="mt-4 my-4 text-center text-dark">Health Care Center</h1>
+                <div class="container my-4 mt-4" style="background: rgb(74, 84, 197); color: white; border-radius: 15px; padding: 40px;">
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="symptoms">Select Symptoms:</label>
+                            <input type="text" class="form-control", id="symptoms" name="symptoms" placeholder="type systems such as itching, vomiting, etc">
+                        </div>
+                        
+
+                        <!-- Display the transcribed text here -->
+                        <div name="mysysms" id="transcription"></div>
+
+                        {% if message %}
+                        <p>{{ message }}</p>
+                        {% endif %}
+                        <br>
+
+                        <button type="submit" class="btn btn-info btn-lg w-100 p-3 m-2" >Predict</button>
+                    </form>
+                </div>
+            </div>
+
+            {% if predicted_disease %}
+
+            <div class="result p-3">
+                <!-- Results -->
+                <h1 class="text-center my-4 mt-4">Our AI System Results</h1>
+                <div class="container w-100">
+
+                    <div class="result-container m-auto">
+                        <!-- Buttons to toggle display -->
+                        <button class="p-3 m-2 btn btn-primary" id="diseaseBtn">Disease</button>
+                        <button class="p-3 m-2 btn btn-primary" id="descritionBtn">Description</button>
+                        <button class="p-3 m-2 btn btn-primary" id="precautionBtn">Precaution</button>
+                        <button class="p-3 m-2 btn btn-primary" id="medicationBtn">Medication</button>
+                        <button class="p-3 m-2 btn btn-primary" id="workoutBtn">Workouts</button>
+                        <button class="p-3 m-2 btn btn-primary" id="dietsBtn">Diets</button>
+                    </div>
+
+                    <div class="p-auto">
+                        
+                        <div class="p-4 d-none" id="diseaseResult">
+                            <h3>Disease</h3>
+                            {{ predicted_disease }}
+                        </div>
+
+                        <div class="p-4 d-none" id="descriptionResult">
+                            <h3>Description</h3>
+                            {{ dis_des }}
+                        </div>
+
+                        <div class="p-4 d-none" id="precautionResult">
+                            <h3>Precautions</h3>
+                            <ul>
+                                {% for i in my_precautions %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="p-4 d-none" id="medicationResult">
+                            <h3>Medication</h3>
+                            <ul>
+                                {% for i in medications %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="p-4 d-none" id="workoutResult">
+                            <h3>Workout</h3>
+                            <ul>
+                                {% for i in workout %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="p-4 d-none" id="dietResult">
+                            <h3>Diet</h3>
+                            <ul>
+                                {% for i in my_diet %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+
+                <!-- script of the result buttons -->
+                <script>
+                    let des=document.getElementById("diseaseBtn");
+                    let des_res=document.getElementById("diseaseResult");
+
+                    let dis=document.getElementById("descritionBtn");
+                    let dis_res=document.getElementById("descriptionResult");
+
+                    let pre=document.getElementById("precautionBtn");
+                    let pre_res=document.getElementById("precautionResult");
+
+                    let med=document.getElementById("medicationBtn");
+                    let med_res=document.getElementById("medicationResult");
+
+                    let work=document.getElementById("workoutBtn");
+                    let work_res=document.getElementById("workoutResult");
+
+                    let diet=document.getElementById("dietsBtn");
+                    let diet_res=document.getElementById("dietResult");
+
+                    des.addEventListener("click", function(event){
+                        des_res.classList.remove("d-none");
+                        dis_res.classList.add("d-none");
+                        pre_res.classList.add("d-none");
+                        med_res.classList.add("d-none");
+                        work_res.classList.add("d-none");
+                        diet_res.classList.add("d-none");
+                        
+                    });
+                    dis.addEventListener("click", function(event){
+                        des_res.classList.add("d-none")
+                        dis_res.classList.remove("d-none");
+                        pre_res.classList.add("d-none");
+                        med_res.classList.add("d-none");
+                        work_res.classList.add("d-none");
+                        diet_res.classList.add("d-none");
+                    });
+                    pre.addEventListener("click", function(event){
+                        des_res.classList.add("d-none")
+                        dis_res.classList.add("d-none");
+                        pre_res.classList.remove("d-none");
+                        med_res.classList.add("d-none");
+                        work_res.classList.add("d-none");
+                        diet_res.classList.add("d-none");
+                    });
+                    med.addEventListener("click", function(event){
+                        des_res.classList.add("d-none")
+                        dis_res.classList.add("d-none");
+                        pre_res.classList.add("d-none");
+                        med_res.classList.remove("d-none");
+                        work_res.classList.add("d-none");
+                        diet_res.classList.add("d-none");
+                    });
+                    work.addEventListener("click", function(event){
+                        des_res.classList.add("d-none")
+                        dis_res.classList.add("d-none");
+                        pre_res.classList.add("d-none");
+                        med_res.classList.add("d-none");
+                        work_res.classList.remove("d-none");
+                        diet_res.classList.add("d-none");
+                    });
+                    diet.addEventListener("click", function(event){
+                        des_res.classList.add("d-none")
+                        dis_res.classList.add("d-none");
+                        pre_res.classList.add("d-none");
+                        med_res.classList.add("d-none");
+                        work_res.classList.add("d-none");
+                        diet_res.classList.remove("d-none");
+                    });
+
+
+                </script>
+            </div>
+        </div>
+
+        <div class="ends text-center text-white p-5">
+            <div class="logo">
+                <img class="myimg" src="..\static\logo.jpeg" alt=" something went wrong">
+            </div>
+            <a class="navbar-brand text-white" href="#">HealthBuddy</a>
+            <br>
+            <p>Presented to you by Esperion</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
